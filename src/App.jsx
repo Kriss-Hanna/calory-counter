@@ -1,17 +1,17 @@
 import { useState } from "react";
-import Quotes from "./components/Quotes";
-import useLocalStorage from "./hooks/useLocalStorage";
+//import Quotes from "./components/Quotes";
 
 import InputGender from "./components/InputGender";
+import useLocalStorage from "./hooks/useLocalStorage";
 
 function App() {
+  const [genderStorage, setGenderStorage] = useLocalStorage("gender", "");
   const [isMale, setIsMale] = useState(false);
 
   const [plate, setPlate] = useState();
   const [caloryPlate, setCaloryPlate] = useState();
 
   const [inputArray, setInputArray] = useState([]);
-  const [caloryStorage, setCaloryStorage] = useLocalStorage("calory", 0);
 
   const totalCalory = isMale ? 2500 : 2000;
 
@@ -28,7 +28,6 @@ function App() {
 
     setPlate("");
     setCaloryPlate(0);
-    setCaloryStorage(caloryStorage + caloryPlate);
   };
 
   const restCalory = () => {
@@ -37,13 +36,18 @@ function App() {
     );
   };
 
+  console.log(genderStorage);
+
   return (
     <>
       <div className="container">
         <h1>Kalorie</h1>
 
         <div className="checkbox-container">
-          <InputGender isMale={isMale} setIsMale={setIsMale} />
+          <InputGender
+            setIsMale={setIsMale}
+            setGenderStorage={setGenderStorage}
+          />
         </div>
 
         <h2 style={{ margin: "1em 0" }}>

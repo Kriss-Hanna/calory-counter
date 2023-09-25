@@ -5,7 +5,7 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 
-export default function InputGender({ isMale, setIsMale }) {
+export default function InputGender({ setIsMale, setGenderStorage }) {
   return (
     <FormControl>
       <FormLabel id="gender">Je suis ...</FormLabel>
@@ -14,13 +14,13 @@ export default function InputGender({ isMale, setIsMale }) {
           value="female"
           control={<Radio />}
           label="une Femme"
-          onInput={() => setIsMale(false)}
+          onInput={() => setIsMale(false) && setGenderStorage("female")}
         />
         <FormControlLabel
           value="male"
           control={<Radio />}
           label="un Homme"
-          onInput={() => setIsMale(true)}
+          onInput={() => setIsMale(true) && setGenderStorage("male")}
         />
       </RadioGroup>
     </FormControl>
