@@ -43,10 +43,6 @@ function App() {
         <h1>Kalorie</h1>
 
         <div className="checkbox-container">
-          {/*           <label htmlFor="male"> Homme</label>
-          <Checkbox checked={isMale} onChange={() => setIsMale(isMale)} />
-          <label htmlFor="female">Femme</label>
-          <Checkbox checked={!isMale} onChange={() => setIsMale(!isMale)} /> */}
           <InputGender isMale={isMale} setIsMale={setIsMale} />
         </div>
 
