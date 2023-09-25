@@ -2,7 +2,7 @@ import { useState } from "react";
 import Quotes from "./components/Quotes";
 import useLocalStorage from "./hooks/useLocalStorage";
 
-import Checkbox from "@mui/material/Checkbox";
+import InputGender from "./components/InputGender";
 
 function App() {
   const [isMale, setIsMale] = useState(false);
@@ -43,16 +43,11 @@ function App() {
         <h1>Kalorie</h1>
 
         <div className="checkbox-container">
-          <label htmlFor="male"> Homme</label>
-          <Checkbox
-            checked={isMale}
-            onChange={(e) => setIsMale(e.target.checked)}
-          />
+          {/*           <label htmlFor="male"> Homme</label>
+          <Checkbox checked={isMale} onChange={() => setIsMale(isMale)} />
           <label htmlFor="female">Femme</label>
-          <Checkbox
-            checked={!isMale}
-            onChange={(e) => setIsMale(e.target.checked)}
-          />
+          <Checkbox checked={!isMale} onChange={() => setIsMale(!isMale)} /> */}
+          <InputGender isMale={isMale} setIsMale={setIsMale} />
         </div>
 
         <h2 style={{ margin: "1em 0" }}>
