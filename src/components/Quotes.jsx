@@ -1,23 +1,27 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 
-function Quotes({ inputArray }) {
-  const [quotes, setQuotes] = useState([]);
+function Quotes() {
   const URL = "https://type.fit/api/quotes";
 
   // fetch quotes
-
   useEffect(() => {
-    fetch(URL)
-      .then((res) => res.json())
-      .then((data) => setQuotes(data));
-  }, [inputArray]);
+    const today = new Date().toISOString().split("T")[0];
+    const lastFetchDate = localStorage.getItem("lastFetchDate");
+    if (lastFetchDate !== today) {
+      fetch(URL)
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+          localStorage.setItem("motivationPhrase", data[0].text);
+          localStorage.setItem("lastFetchDate", today);
+        })
+        .catch((error) => console.error("Erreur de fetch:", error));
+    }
+  }, []);
 
-  return (
-    <h2>
-      {quotes.length > 0 &&
-        quotes[Math.floor(Math.random() * quotes.length)].text}
-    </h2>
-  );
+  const motivationPhrase = localStorage.getItem("motivationPhrase");
+
+  return <h2>{motivationPhrase}</h2>;
 }
 
 export default Quotes;

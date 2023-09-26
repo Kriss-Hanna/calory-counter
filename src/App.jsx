@@ -1,12 +1,15 @@
 import { useState } from "react";
-//import Quotes from "./components/Quotes";
+import Quotes from "./components/Quotes";
 
 import InputGender from "./components/InputGender";
 import useLocalStorage from "./hooks/useLocalStorage";
 
 function App() {
-  const [genderStorage, setGenderStorage] = useLocalStorage("gender", "");
   const [isMale, setIsMale] = useState(false);
+  const [genderStorage, setGenderStorage] = useLocalStorage(
+    "gender",
+    isMale ? "male" : "female"
+  );
 
   const [plate, setPlate] = useState();
   const [caloryPlate, setCaloryPlate] = useState();
@@ -35,8 +38,6 @@ function App() {
       totalCalory - inputArray.reduce((acc, item) => acc + item.caloryPlate, 0)
     );
   };
-
-  console.log(genderStorage);
 
   return (
     <>
@@ -83,8 +84,7 @@ function App() {
           );
         })}
       </div>
-      {/*       <Quotes inputArray={inputArray} />
-       */}{" "}
+      <Quotes />
     </>
   );
 }
