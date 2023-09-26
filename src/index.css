@@ -62,7 +62,8 @@ h2 {
 }
 
 h3 {
-  margin: 0 1em;
+ text-align: center;
+ margin: 1em;
 }
 
 button {
@@ -85,6 +86,10 @@ button {
 
   .input-container input {
     margin: .8rem 0;
+  }
+
+  .quote-text {
+    text-align: center;
   }
 
 

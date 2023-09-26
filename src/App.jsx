@@ -1,22 +1,17 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Quotes from "./components/Quotes";
 
 import InputGender from "./components/InputGender";
-import useLocalStorage from "./hooks/useLocalStorage";
 
 function App() {
-  const [isMale, setIsMale] = useState(false);
-  const [genderStorage, setGenderStorage] = useLocalStorage(
-    "gender",
-    isMale ? "male" : "female"
-  );
+  const [gender, setGender] = useState(localStorage.getItem("gender"));
 
   const [plate, setPlate] = useState();
   const [caloryPlate, setCaloryPlate] = useState();
 
   const [inputArray, setInputArray] = useState([]);
 
-  const totalCalory = isMale ? 2500 : 2000;
+  const totalCalory = gender === "female" ? 2000 : 2500;
 
   const addPlate = () => {
     if (!plate || !caloryPlate)
@@ -39,16 +34,25 @@ function App() {
     );
   };
 
+  const genderStorage = () => {
+    if (gender === "female") {
+      localStorage.setItem("gender", "female");
+    } else {
+      localStorage.setItem("gender", "male");
+    }
+  };
+
+  useEffect(() => {
+    genderStorage();
+  }, [gender]);
+
   return (
     <>
       <div className="container">
         <h1>Kalorie</h1>
 
         <div className="checkbox-container">
-          <InputGender
-            setIsMale={setIsMale}
-            setGenderStorage={setGenderStorage}
-          />
+          <InputGender gender={gender} setGender={setGender} />
         </div>
 
         <h2 style={{ margin: "1em 0" }}>
