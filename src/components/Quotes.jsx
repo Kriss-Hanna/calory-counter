@@ -11,7 +11,6 @@ function Quotes() {
       fetch(URL)
         .then((response) => response.json())
         .then((data) => {
-          console.log(data);
           localStorage.setItem("motivationPhrase", data[0].text);
           localStorage.setItem("lastFetchDate", today);
         })
@@ -21,7 +20,7 @@ function Quotes() {
 
   const motivationPhrase = localStorage.getItem("motivationPhrase");
 
-  return <h2>{motivationPhrase}</h2>;
+  return <h3 className="quote-text">{motivationPhrase}</h3>;
 }
 
 export default Quotes;
