@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Quotes from "./components/Quotes";
 
 import InputGender from "./components/InputGender";
@@ -9,7 +9,24 @@ function App() {
   const [plate, setPlate] = useState();
   const [caloryPlate, setCaloryPlate] = useState();
 
-  const [inputArray, setInputArray] = useState([]);
+  const loadInputArray = () => {
+    const today = new Date().toISOString().split("T")[0];
+    const lastFetchDate = localStorage.getItem("lastFetchDate");
+    if (lastFetchDate !== today) {
+      localStorage.setItem("lastFetchDate", today);
+      localStorage.removeItem("caloryArray");
+      return [];
+    } else {
+      const storedArray = localStorage.getItem("caloryArray");
+      return storedArray ? JSON.parse(storedArray) : [];
+    }
+  };
+
+  const [inputArray, setInputArray] = useState(loadInputArray);
+
+  useEffect(() => {
+    localStorage.setItem("caloryArray", JSON.stringify(inputArray));
+  }, [inputArray]);
 
   const totalCalory = gender === "female" ? 2000 : 2500;
 
