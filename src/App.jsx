@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Quotes from "./components/Quotes";
 
 import InputGender from "./components/InputGender";
@@ -33,18 +33,6 @@ function App() {
       totalCalory - inputArray.reduce((acc, item) => acc + item.caloryPlate, 0)
     );
   };
-
-  const genderStorage = () => {
-    if (gender === "female") {
-      localStorage.setItem("gender", "female");
-    } else {
-      localStorage.setItem("gender", "male");
-    }
-  };
-
-  useEffect(() => {
-    genderStorage();
-  }, [gender]);
 
   return (
     <>
