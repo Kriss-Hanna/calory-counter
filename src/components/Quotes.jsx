@@ -3,7 +3,7 @@ import { useEffect } from "react";
 function Quotes() {
   const URL = "https://type.fit/api/quotes";
 
-  // fetch quotes
+  // fetch a quoted per day
   useEffect(() => {
     const today = new Date().toISOString().split("T")[0];
     const lastFetchDate = localStorage.getItem("lastFetchDate");
