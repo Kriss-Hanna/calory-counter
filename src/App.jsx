@@ -6,8 +6,8 @@ import InputGender from "./components/InputGender";
 function App() {
   const [gender, setGender] = useState(localStorage.getItem("gender"));
 
-  const [plate, setPlate] = useState();
-  const [caloryPlate, setCaloryPlate] = useState();
+  const [plate, setPlate] = useState("");
+  const [caloryPlate, setCaloryPlate] = useState(0);
 
   const loadInputArray = () => {
     const today = new Date().toISOString().split("T")[0];
