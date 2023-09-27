@@ -11,7 +11,8 @@ function Quotes() {
       fetch(URL)
         .then((response) => response.json())
         .then((data) => {
-          localStorage.setItem("motivationPhrase", data[0].text);
+          let indexAleatoire = Math.floor(Math.random() * data.length);
+          localStorage.setItem("motivationPhrase", data[indexAleatoire].text);
           localStorage.setItem("lastFetchDate", today);
         })
         .catch((error) => console.error("Erreur de fetch:", error));
